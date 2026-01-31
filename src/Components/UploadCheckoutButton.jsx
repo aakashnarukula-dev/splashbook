@@ -49,7 +49,7 @@ export const UploadCheckoutButton = ({
       ) : requiredPages === files.length && AreAllPicturesUploaded ? (
         checkingOut ? (
           <div className="upload-container">
-            <div className="upload-btn" style={{ borderRadius: "20px" }}>
+            <div className="checkout-btn" style={{ borderRadius: "20px" }}>
               <div className="loading">
                 Checking out <span>.</span>
                 <span>.</span>
@@ -66,7 +66,7 @@ export const UploadCheckoutButton = ({
           </>
         )
       ) : requiredPages === files.length && !AreAllPicturesUploaded ? (
-        <div className="upload-btn" style={{ borderRadius: "20px" }}>
+        <div className="checkout-btn" style={{ borderRadius: "20px" }}>
           <div className="loading">
             Finalising the pictures <span>.</span>
             <span>.</span>
@@ -76,7 +76,7 @@ export const UploadCheckoutButton = ({
       ) : files.length > requiredPages ? (
         /* --- NEW LOGIC: TOO MANY PICTURES --- */
         <div
-          className="upload-btn"
+          className="checkout-btn"
           style={{
             borderRadius: "20px",
             cursor: "default",
@@ -92,7 +92,7 @@ export const UploadCheckoutButton = ({
         </div>
       ) : (
         /* --- STANDARD LOGIC: UPLOAD MORE --- */
-        <div className="upload-btn" {...getRootProps()}>
+        <div className="checkout-btn" {...getRootProps()}>
           <MdOutlineFileUpload size={25} />
           <input {...getInputProps()} />
           <p style={{}}>Upload {requiredPages - files.length} more pictures</p>

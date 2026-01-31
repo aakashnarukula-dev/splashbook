@@ -108,7 +108,6 @@ export const SortableItem = ({ fileObj, caption, onDelete, updateQuote }) => {
         <div className="modal-overlay" onClick={() => setIsEditing(false)}>
           <div
             className="confirmation-modal"
-            style={{ width: "400px" }}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="textarea-container">
@@ -126,7 +125,7 @@ export const SortableItem = ({ fileObj, caption, onDelete, updateQuote }) => {
               If you don't want the caption on this page. Just remove the text
               and save it
             </p>
-            <br />
+
             <div className="button-group">
               <button
                 className="modal-cancel"

@@ -58,11 +58,11 @@
 }
 
 .checkout-btn {
-  background-color: #ffd162;
-  color: black;
+  background-color: #000000;
+  color: #ffffff;
   position: fixed;
-  bottom: 0%;
-  padding: 20px 10px;
+  bottom: -1.2%;
+  padding: 18px;
   justify-content: center;
   left: 50%;
   z-index: 1000;
@@ -74,13 +74,10 @@
   max-width: 500px;
   gap: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px #e9be56;
-  text-transform: uppercase;
 }
 
 .checkout-btn div {
   font-size: 16px;
-  font-weight: 700;
 }
 
 .loading {
@@ -144,7 +141,7 @@
 
 .deleting-content p {
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 /* Add spinner styles if not existing */
