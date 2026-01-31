@@ -1,0 +1,168 @@
+.first-upload-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffd162;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 20px 0;
+  width: 100%;
+  text-align: center;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 250px;
+
+  box-shadow: 2px 3px 4px #7c7c7c;
+}
+
+.first-upload-btn:hover {
+  box-shadow: 0px 0px 0px 0px rgb(0, 0, 0, 0);
+  border: 1px solid #000000;
+}
+
+.upload-container {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload-btn {
+  background-color: black;
+  color: white;
+  position: fixed;
+  bottom: 0%;
+  padding: 20px 10px;
+  justify-content: center;
+  left: 50%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transform: translate(-50%, -15%);
+  width: 90%;
+  max-width: 500px;
+  gap: 10px;
+  border-radius: 10px;
+}
+
+.checkout-btn {
+  background-color: #ffd162;
+  color: black;
+  position: fixed;
+  bottom: 0%;
+  padding: 20px 10px;
+  justify-content: center;
+  left: 50%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transform: translate(-50%, -25%);
+  width: 90%;
+  max-width: 500px;
+  gap: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px #e9be56;
+  text-transform: uppercase;
+}
+
+.checkout-btn div {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+}
+
+/* If you want the dots to animate vertically centered */
+.loading span {
+  display: inline-block;
+  transform: translateY(0);
+}
+
+.loading span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.loading span:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.loading span:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Full page overlay */
+.full-page-deleting-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+}
+
+.deleting-content {
+  color: white;
+  text-align: center;
+  padding: 20px;
+
+  border-radius: 8px;
+}
+
+.deleting-content p {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+/* Add spinner styles if not existing */
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid #ffffff;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

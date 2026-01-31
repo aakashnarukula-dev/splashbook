@@ -1,0 +1,17 @@
+* {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  /* background-color: #feeef5; */
+}
+
+.-translate-x-1\/2,
+.-translate-y-1\/2 {
+  transform: translate(-50%, 0) skewX(0) skewY(0) scaleX(1) scaleY(1);
+}
