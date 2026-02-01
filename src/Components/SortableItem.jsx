@@ -80,7 +80,7 @@ export const SortableItem = ({ fileObj, caption, onDelete, updateQuote }) => {
         <div className="full-page-deleting-overlay">
           <div className="deleting-content">
             <div className="spinner"></div>
-            <p>Deleting the image...</p>
+            <p style={{ fontSize: "12px" }}>Deleting the image...</p>
           </div>
         </div>
       )}
