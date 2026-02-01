@@ -1,5 +1,5 @@
 .modal-confirm {
-  background: #007bff;
+  background: #7a4aa3;
   color: #fff;
 }
 
@@ -19,11 +19,14 @@
 .confirmation-modal {
   margin: 0 10px;
   border-radius: 15px;
-  padding: 10px;
+  padding: 15px;
   font-size: 14px;
   background: #fff;
-  max-width: 400px;
+  max-width: 500px;
   width: 100%;
+  display: flex;
+  flex-flow: column;
+  gap: 8px;
 }
 
 .button-group {
@@ -33,17 +36,11 @@
 }
 
 .button-group button {
-  margin-top: 5px;
   display: flex;
   justify-content: center;
   border-radius: 15px;
   width: 50%;
-  padding: 10px;
+  padding: 15px;
   cursor: pointer;
   border: none;
-}
-
-.modal-confirm {
-  background-color: #ffd162;
-  color: black;
 }

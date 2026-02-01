@@ -11,7 +11,7 @@ import "./SortableItem.css";
 import ConfirmationModal from "./ConfirmationModal";
 
 export const SortableItem = ({ fileObj, caption, onDelete, updateQuote }) => {
-  // Defensive check to ensure fileObj and fileObj.id exist
+  // Defensive check
   if (!fileObj || !fileObj.id) {
     console.error("SortableItem: fileObj or fileObj.id is missing", fileObj);
     return null;
@@ -24,20 +24,18 @@ export const SortableItem = ({ fileObj, caption, onDelete, updateQuote }) => {
   const [showRemoveQuoteModal, setShowRemoveQuoteModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Focus and cursor positioning logic
+  // Focus logic for Edit Modal
   useEffect(() => {
     if (isEditing && inputRef.current) {
-      const textarea = inputRef.current;
-      textarea.focus();
-      // Set cursor to end of text
-      const length = textarea.value.length;
-      textarea.setSelectionRange(length, length);
+      inputRef.current.focus();
+      const length = inputRef.current.value.length;
+      inputRef.current.setSelectionRange(length, length);
     }
   }, [isEditing]);
 
   const handleEditClick = () => {
+    setEditedQuote(caption); // Ensure we start with current caption
     setIsEditing(true);
-    setEditedQuote(caption);
   };
 
   const handleSaveEdit = () => {
@@ -55,6 +53,7 @@ export const SortableItem = ({ fileObj, caption, onDelete, updateQuote }) => {
 
   const confirmDelete = async () => {
     setIsDeleting(true);
+    setShowDeleteModal(false); // Close modal immediately
     try {
       if (fileObj.uploadedUrl) {
         const fileRef = ref(storage, fileObj.uploadedUrl);
@@ -63,20 +62,20 @@ export const SortableItem = ({ fileObj, caption, onDelete, updateQuote }) => {
       onDelete();
     } catch (error) {
       console.error("Error deleting the file:", error);
+      alert("Failed to delete image."); // Optional: user feedback
     } finally {
       setIsDeleting(false);
-      setShowDeleteModal(false);
     }
   };
 
   const confirmRemoveQuote = () => {
-    updateQuote(""); // Remove the caption
+    updateQuote("");
     setShowRemoveQuoteModal(false);
   };
 
   return (
     <>
-      {/* Full-page deletion overlay */}
+      {/* 1. Full-page deletion overlay (Restored) */}
       {isDeleting && (
         <div className="full-page-deleting-overlay">
           <div className="deleting-content">
@@ -85,7 +84,8 @@ export const SortableItem = ({ fileObj, caption, onDelete, updateQuote }) => {
           </div>
         </div>
       )}
-      {/* Delete Confirmation Modal */}
+
+      {/* 2. Delete Confirmation Modal */}
       {showDeleteModal && (
         <ConfirmationModal
           message="Are you sure you want to remove this image?"
@@ -94,7 +94,7 @@ export const SortableItem = ({ fileObj, caption, onDelete, updateQuote }) => {
         />
       )}
 
-      {/* Remove Caption Confirmation Modal */}
+      {/* 3. Remove Caption Confirmation Modal */}
       {showRemoveQuoteModal && (
         <ConfirmationModal
           message="Are you sure you want to remove this caption?"
@@ -103,7 +103,7 @@ export const SortableItem = ({ fileObj, caption, onDelete, updateQuote }) => {
         />
       )}
 
-      {/* Edit Caption Modal */}
+      {/* 4. Edit Caption Modal (Popup) */}
       {isEditing && (
         <div className="modal-overlay" onClick={() => setIsEditing(false)}>
           <div
@@ -114,16 +114,21 @@ export const SortableItem = ({ fileObj, caption, onDelete, updateQuote }) => {
               <textarea
                 ref={inputRef}
                 value={editedQuote}
-                onChange={(e) => setEditedQuote(e.target.value)}
+                onChange={(e) => {
+                  // Prevent typing beyond limit
+                  if (e.target.value.length <= 130) {
+                    setEditedQuote(e.target.value);
+                  }
+                }}
                 rows="4"
                 placeholder="Edit your text here..."
                 maxLength={130}
               />
               <span className="char-count">{`${editedQuote.length}/130`}</span>
             </div>
-            <p style={{ fontSize: "12px" }}>
-              If you don't want the caption on this page. Just remove the text
-              and save it
+            <p style={{ fontSize: "12px", color: "#666", margin: "0px" }}>
+              If you don't want the caption on this page, just remove the text
+              and save it.
             </p>
 
             <div className="button-group">
@@ -141,75 +146,95 @@ export const SortableItem = ({ fileObj, caption, onDelete, updateQuote }) => {
         </div>
       )}
 
+      {/* Main Item Card */}
       <div className="each-item-container" ref={setNodeRef} style={style}>
-        <MdDragIndicator
-          className="drag-handle"
-          size={32}
-          style={{ touchAction: "none" }}
-          {...listeners}
-          {...attributes}
-        />
+        <div className="drag-handle" {...attributes} {...listeners}>
+          <MdDragIndicator size={20} />
+        </div>
+
         <div className="image-container">
           <img
             className="each-item-image"
-            src={fileObj.uploadedUrl || fileObj.preview}
-            alt=""
+            src={fileObj.preview}
+            alt="upload-preview"
           />
-          {!fileObj.uploadedUrl && (
+          {fileObj.progress < 100 && (
             <div className="progress-overlay">
               <CircularProgressbar
                 className="each-item-image-progress-bar"
                 value={fileObj.progress}
                 text={`${fileObj.progress}%`}
                 styles={buildStyles({
-                  pathColor: `rgba(255, 255, 255, ${fileObj.progress / 100})`,
+                  textSize: "25px",
                   textColor: "#fff",
-                  trailColor: "transparent",
+                  pathColor: "#4caf50",
+                  trailColor: "rgba(255,255,255,0.2)",
                 })}
               />
             </div>
           )}
         </div>
 
-        <div className="quote-container">
-          {fileObj.uploadedUrl ? (
-            <>
-              {caption !== "" ? (
-                <p className="quote">{caption}</p>
+        {/* --- NEW STRUCTURE (Matches splashbook UI) --- */}
+        <div className="quote-wrapper">
+          <div
+            className={`quote-box ${
+              !fileObj.uploadedUrl || caption === "" ? "is-placeholder" : ""
+            }`}
+            onClick={
+              fileObj.uploadedUrl && caption === ""
+                ? handleEditClick
+                : undefined
+            }
+          >
+            {fileObj.uploadedUrl ? (
+              caption !== "" ? (
+                // Display Caption
+                caption
               ) : (
-                <p
-                  onClick={handleEditClick}
-                  style={{ cursor: "pointer", color: "#9f9f9f" }}
-                  className="quote"
-                >
-                  Write a caption (Optional)
-                </p>
-              )}
-            </>
-          ) : (
-            <div className="skeleton-card">
-              <div className="skeleton-header">Generating Caption...</div>
-              <div className="skeleton-line"></div>
-              <div className="skeleton-line"></div>
-              <div className="skeleton-line short"></div>
-            </div>
-          )}
+                // Display Placeholder Text
+                "Write a caption (Optional)"
+              )
+            ) : (
+              // Display Skeleton while uploading/generating
+              <div className="skeleton-card">
+                <div className="skeleton-header">
+                  <p>Generating Caption...</p>
+                </div>
+                <div className="skeleton-line"></div>
+                <div className="skeleton-line"></div>
+                <div className="skeleton-line short"></div>
+              </div>
+            )}
+          </div>
 
+          {/* Action Buttons (Stacked Vertically) */}
           {caption !== "" && fileObj.uploadedUrl && (
-            <div>
-              <MdEdit className="quote-edit-icon" onClick={handleEditClick} />
-              <IoIosCloseCircle
-                className="quote-edit-icon"
+            <div className="item-actions">
+              <div
+                className="action-btn btn-edit"
+                onClick={handleEditClick}
+                title="Edit Caption"
+              >
+                <MdEdit />
+              </div>
+              <div
+                className="action-btn btn-clear"
                 onClick={() => setShowRemoveQuoteModal(true)}
-              />
+                title="Remove Caption"
+              >
+                <IoIosCloseCircle />
+              </div>
             </div>
           )}
         </div>
 
+        {/* Global Delete Button */}
         <div>
           <MdDelete
             className="each-item-delete-icon"
             onClick={() => setShowDeleteModal(true)}
+            title="Delete Image"
           />
         </div>
       </div>

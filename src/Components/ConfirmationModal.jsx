@@ -5,7 +5,7 @@ const ConfirmationModal = ({ message, onConfirm, onCancel }) => {
   return (
     <div className="modal-overlay" onClick={onCancel}>
       <div className="confirmation-modal" onClick={(e) => e.stopPropagation()}>
-        <p>{message}</p>
+        <p style={{ margin: "0px", fontSize: "15px" }}>{message}</p>
         <div className="button-group" style={{ marginTop: "10px" }}>
           <button className="modal-cancel" onClick={onCancel}>
             Cancel

@@ -13,20 +13,22 @@
 }
 
 .container {
+  background: #fcfcfc;
   width: 100%;
   transition: padding 0.3s ease;
 }
 
 /* Style when pictures are present */
 .container.with-padding {
-  padding-top: 100px;
-  padding-bottom: 70px;
+  padding-top: 115px;
+  padding-bottom: 85px;
 }
 
 .items-list {
+  width: 100%;
+  max-width: 450px;
   display: flex;
   align-items: center;
-  margin: 0px 15px 0px 15px;
 }
 
 .loading-spinner {

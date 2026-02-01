@@ -417,15 +417,30 @@ export const EditorPage = ({
                   {files.map((fileObj, index) => (
                     <React.Fragment key={fileObj.id}>
                       {index === 0 ? (
-                        <p style={{ marginBottom: "5px", fontSize: "12px" }}>
+                        <p
+                          style={{
+                            margin: "0px 0px 5px 0px",
+                            fontSize: "14px",
+                          }}
+                        >
                           Front Cover
                         </p>
                       ) : index === parseInt(pages) - 1 ? (
-                        <p style={{ marginBottom: "5px", fontSize: "12px" }}>
+                        <p
+                          style={{
+                            margin: "0px 0px 5px 0px",
+                            fontSize: "14px",
+                          }}
+                        >
                           Back Cover
                         </p>
                       ) : (
-                        <p style={{ marginBottom: "5px", fontSize: "12px" }}>
+                        <p
+                          style={{
+                            margin: "0px 0px 5px 0px",
+                            fontSize: "14px",
+                          }}
+                        >
                           Page {index + 1}
                         </p>
                       )}

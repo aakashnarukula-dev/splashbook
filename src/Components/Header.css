@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   margin: 0 auto;
-  height: 65px;
+  height: 70px;
   background-color: #ffffff;
   max-width: 500px;
 }
@@ -24,7 +24,7 @@
 }
 
 .header-title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
 }
 
@@ -50,14 +50,14 @@
   background: #c9ea12;
   font-size: 12px;
   text-align: center;
-  padding: 5px 0;
+  padding: 7px 0;
 }
 
 .back-icon {
   display: flex;
   gap: 15px;
   height: 100%;
-  width: 65px;
+  width: 55px;
   justify-content: center;
   align-items: center;
   cursor: pointer;
