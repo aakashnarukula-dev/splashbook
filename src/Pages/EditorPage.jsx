@@ -384,7 +384,7 @@ export const EditorPage = ({
               fontSize: "12px",
             }}
           >
-            Please wait, loading images...
+            Please wait while pictures are getting loaded
             <br />
             It takes 5 to 10 seconds, depending on the size of the pictures.
           </p>
