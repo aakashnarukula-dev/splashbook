@@ -55,8 +55,8 @@
   background-color: black;
   color: white;
   position: fixed;
-  bottom: 0%;
-  padding: 20px 10px;
+  bottom: -1%;
+  padding: 18px 10px;
   justify-content: center;
   left: 50%;
   z-index: 1000;
@@ -64,7 +64,7 @@
   align-items: center;
   cursor: pointer;
   transform: translate(-50%, -25%);
-  width: 90%;
+  width: 93%;
   max-width: 500px;
   gap: 20px;
   border-radius: 10px;

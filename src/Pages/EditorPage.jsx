@@ -420,7 +420,7 @@ export const EditorPage = ({
                         <p
                           style={{
                             margin: "0px 0px 5px 0px",
-                            fontSize: "14px",
+                            fontSize: "12px",
                           }}
                         >
                           Front Cover
@@ -429,7 +429,7 @@ export const EditorPage = ({
                         <p
                           style={{
                             margin: "0px 0px 5px 0px",
-                            fontSize: "14px",
+                            fontSize: "12px",
                           }}
                         >
                           Back Cover
@@ -438,7 +438,7 @@ export const EditorPage = ({
                         <p
                           style={{
                             margin: "0px 0px 5px 0px",
-                            fontSize: "14px",
+                            fontSize: "12px",
                           }}
                         >
                           Page {index + 1}
