@@ -5,6 +5,8 @@ import { doc, updateDoc, onSnapshot } from "firebase/firestore";
 import { db } from "./Firebase/firebase";
 // IMPORT THE HOOK
 import { usePresence } from "./Hooks/usePresence";
+// IMPORT THE NEW SKELETON COMPONENT
+import { UploadSkeleton } from "./Components/UploadSkeleton";
 
 export const PageWrapper = () => {
   const location = useLocation();
@@ -42,7 +44,6 @@ export const PageWrapper = () => {
   };
 
   useEffect(() => {
-    // ... (Rest of your existing useEffect logic remains unchanged) ...
     if (!uploadID) {
       window.location.replace("https://gyftalala.com");
       return;
@@ -60,11 +61,14 @@ export const PageWrapper = () => {
 
         const data = docSnap.data();
         const orderDetails = data.orderDetails || {};
+
+        // CHECK PAYMENT STATUS
         if (orderDetails.orderStatus === "paid") {
           window.location.replace("https://gyftalala.com");
           return;
         }
 
+        // USER SYNC LOGIC (Preserved Exactly)
         const lsUser = localStorage.getItem("userDetails");
         const dbUser = data.userDetails;
         let activeUser = null;
@@ -115,23 +119,12 @@ export const PageWrapper = () => {
 
   if (!uploadID) return null;
 
+  // --- CHANGED SECTION STARTS HERE ---
+  // Replaced the 12 lines of "conversion-overlay" HTML with the Skeleton component
   if (loading) {
-    return (
-      <div className="conversion-overlay">
-        <div className="spinner"></div>
-        <p
-          style={{
-            color: "black",
-            marginTop: "10px",
-            textAlign: "center",
-            fontSize: "12px",
-          }}
-        >
-          Loading your project...
-        </p>
-      </div>
-    );
+    return <UploadSkeleton />;
   }
+  // --- CHANGED SECTION ENDS HERE ---
 
   if (error) {
     return null;
