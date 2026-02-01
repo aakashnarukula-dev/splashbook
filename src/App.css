@@ -134,9 +134,6 @@
 }
 
 .container.skeleton-view {
-  padding-top: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
   max-width: 500px; /* Matching your CSS max-width */
   margin: 0 auto;
 }

@@ -65,18 +65,48 @@ export const UploadCheckoutButton = ({
           </div>
         </div>
       ) : files.length > requiredPages ? (
+        /* --- UPDATED SECTION START --- */
         <div
           className="checkout-btn"
           style={{
             cursor: "default",
-            borderColor: "#ff4d4f",
-            color: "#ff4d4f",
+
+            /* Using flex-start to align the stacked text with the icon properly */
+            alignItems: "center",
+            padding: "10px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "0px",
           }}
         >
-          <MdErrorOutline size={25} />
-          <p>Remove {files.length - requiredPages} pictures to continue</p>
+          <div
+            style={{
+              display: "flex",
+              textAlign: "left",
+              borderColor: "#ff4d4f",
+              color: "#ff4d4f",
+              gap: "5px",
+            }}
+          >
+            <MdErrorOutline size={22} />
+            <p style={{ margin: 0 }}>
+              Remove {files.length - requiredPages} pictures to continue
+            </p>
+          </div>
+          <p
+            style={{
+              margin: 0,
+              fontSize: "12px",
+              color: "white", // White text to distinguish it from the error
+              fontWeight: "normal",
+              opacity: 0.9,
+            }}
+          >
+            or Go back and select more pages
+          </p>
         </div>
       ) : (
+        /* --- UPDATED SECTION END --- */
         <>
           <div className="checkout-btn" {...getRootProps()}>
             <MdOutlineFileUpload size={25} />

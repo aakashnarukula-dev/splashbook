@@ -1,4 +1,5 @@
 import React from "react";
+import { MdDelete } from "react-icons/md";
 
 export const UploadSkeleton = () => {
   // Create an array of 6 items to fill the screen
@@ -58,11 +59,8 @@ export const UploadSkeleton = () => {
 
       {/* Main Content Container */}
       <div
-        className="container skeleton-view"
+        className="container skeleton-view2"
         style={{
-          paddingTop: "20px",
-          paddingLeft: "10px",
-          paddingRight: "10px",
           maxWidth: "500px",
           margin: "0 auto",
           width: "100%", // Ensures it takes full available width
@@ -104,6 +102,7 @@ export const UploadSkeleton = () => {
                   boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.2)",
                   backgroundColor: "white",
                   height: "auto",
+                  margin: "0px",
                 }}
               >
                 {/* Drag Handle Mock */}
@@ -215,7 +214,11 @@ export const UploadSkeleton = () => {
                 </div>
 
                 {/* Delete Icon Mock */}
-                <div style={{ padding: "0 5px", color: "#eee" }}>🗑</div>
+                <MdDelete
+                  style={{ color: "#e5e5e5" }}
+                  className="each-item-delete-icon"
+                  title="Delete Image"
+                />
               </div>
             </div>
           ))}
