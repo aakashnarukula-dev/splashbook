@@ -70,22 +70,19 @@ export const PageWrapper = () => {
           return;
         }
 
-        // USER SYNC LOGIC (Preserved Exactly)
+        // USER SYNC LOGIC (Firestore first, then localStorage)
         const lsUser = localStorage.getItem("userDetails");
         const dbUser = data.userDetails;
         let activeUser = null;
 
-        if (lsUser) {
-          activeUser = JSON.parse(lsUser);
-          setUserDetails(activeUser);
-
-          if (!dbUser || dbUser.phoneNumber !== activeUser.phoneNumber) {
-            syncUserToFirestore(uploadID, activeUser);
-          }
-        } else if (dbUser) {
+        if (dbUser) {
           activeUser = dbUser;
           setUserDetails(activeUser);
           localStorage.setItem("userDetails", JSON.stringify(activeUser));
+        } else if (lsUser) {
+          activeUser = JSON.parse(lsUser);
+          setUserDetails(activeUser);
+          syncUserToFirestore(uploadID, activeUser);
         }
 
         const pDetails = data.productDetails || {};
