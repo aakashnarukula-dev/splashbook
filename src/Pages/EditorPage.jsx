@@ -37,6 +37,7 @@ export const EditorPage = ({
   type,
   userDetails,
   onLoginSuccess,
+  noCheckout,
 }) => {
   const [files, setFiles] = useState([]);
   const [defaultQuotes, setDefaultQuotes] = useState([]);
@@ -475,13 +476,15 @@ export const EditorPage = ({
             </div>
           )}
 
-          <UploadCheckoutButton
-            pages={pages}
-            uploadID={uploadID}
-            files={files}
-            getRootProps={getRootProps}
-            getInputProps={getInputProps}
-          />
+          {!noCheckout && (
+            <UploadCheckoutButton
+              pages={pages}
+              uploadID={uploadID}
+              files={files}
+              getRootProps={getRootProps}
+              getInputProps={getInputProps}
+            />
+          )}
         </div>
       </div>
     </>

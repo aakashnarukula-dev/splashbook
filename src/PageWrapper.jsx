@@ -26,6 +26,8 @@ export const PageWrapper = () => {
   const uploadID = params.get("uploadID");
   // 1. GET SESSION ID
   const sessionID = params.get("sessionID");
+  // 2. CHECK FOR NO-CHECKOUT PARAMETER
+  const noCheckout = params.has("no-checkout");
 
   // 2. ACTIVATE TRACKING
   // This will handle isLive, connections, and reachedTill logic automatically
@@ -136,6 +138,7 @@ export const PageWrapper = () => {
         {...editorProps}
         userDetails={userDetails}
         onLoginSuccess={handleLoginSuccess}
+        noCheckout={noCheckout}
       />
     </div>
   );
