@@ -476,15 +476,14 @@ export const EditorPage = ({
             </div>
           )}
 
-          {!noCheckout && (
-            <UploadCheckoutButton
-              pages={pages}
-              uploadID={uploadID}
-              files={files}
-              getRootProps={getRootProps}
-              getInputProps={getInputProps}
-            />
-          )}
+          <UploadCheckoutButton
+            pages={pages}
+            uploadID={uploadID}
+            files={files}
+            getRootProps={getRootProps}
+            getInputProps={getInputProps}
+            noCheckout={noCheckout}
+          />
         </div>
       </div>
     </>

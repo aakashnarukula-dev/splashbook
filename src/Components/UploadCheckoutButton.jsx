@@ -10,6 +10,7 @@ export const UploadCheckoutButton = ({
   files,
   getRootProps,
   getInputProps,
+  noCheckout,
 }) => {
   const AreAllPicturesUploaded = files.every(
     (file) => file.uploadedUrl !== null,
@@ -48,13 +49,15 @@ export const UploadCheckoutButton = ({
               </div>
             </div>
           </div>
-        ) : (
+        ) : !noCheckout ? (
           <>
             <div className="checkout-btn" onClick={initiateCheckout}>
               <div>⚡️ Express checkout</div>
               <CgArrowLongRight size={20} />
             </div>
           </>
+        ) : (
+          <></>
         )
       ) : requiredPages === files.length && !AreAllPicturesUploaded ? (
         <div className="checkout-btn">
