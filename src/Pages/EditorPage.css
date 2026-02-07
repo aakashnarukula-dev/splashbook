@@ -32,6 +32,8 @@
   padding: 0 16px;
   margin: 0 auto;
   box-sizing: border-box;
+  touch-action: pan-y;
+  overflow-x: hidden;
 }
 
 .loading-spinner {
