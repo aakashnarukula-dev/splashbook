@@ -64,8 +64,8 @@ export const PageWrapper = () => {
         const data = docSnap.data();
         const orderDetails = data.orderDetails || {};
 
-        // CHECK PAYMENT STATUS
-        if (orderDetails.orderStatus === "paid") {
+        // CHECK FOR RAZORPAY PAYMENT ID
+        if (orderDetails.paymentDetails?.razorpay_payment_id) {
           window.location.replace("https://gyftalala.com");
           return;
         }
